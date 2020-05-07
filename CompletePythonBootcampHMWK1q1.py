@@ -35,3 +35,35 @@ def numUpperAndLower(aString):
 #test
 #numUpperAndLower("DAniel")
 
+#*********************************Fourth Question ****************************
+#wirte a function that takes a list and returns a new list with uniqque elements of the first list
+
+def uniqueList(arrayOfNumbers):
+	uniqueArray = [];
+	for currentNum in arrayOfNumbers:
+		if(currentNum in uniqueArray):
+			continue
+		uniqueArray.append(currentNum)
+	print(uniqueArray)
+
+#test
+#uniqueList([1,1,1,1,2,2,2,3,3,3]);	
+
+
+#***************fourth quesiton ************************************************
+#write a function to muliply all the numbers in a list
+
+def multiplyElementsInList(arrayOfNumbers):
+	result = 1;
+
+	for num in arrayOfNumbers:
+		result *=num
+
+	print(result);
+
+multiplyElementsInList([1,2,3,-4])
+
+
+
+
+
