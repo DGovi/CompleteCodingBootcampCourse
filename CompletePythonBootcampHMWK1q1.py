@@ -50,7 +50,7 @@ def uniqueList(arrayOfNumbers):
 #uniqueList([1,1,1,1,2,2,2,3,3,3]);	
 
 
-#***************fourth quesiton ************************************************
+#***************Fifth quesiton ************************************************
 #write a function to muliply all the numbers in a list
 
 def multiplyElementsInList(arrayOfNumbers):
@@ -61,9 +61,27 @@ def multiplyElementsInList(arrayOfNumbers):
 
 	print(result);
 
-multiplyElementsInList([1,2,3,-4])
+#test
+#multiplyElementsInList([1,2,3,-4])
 
+#*************************** q6 *******************************************
+#write a function that check sif a string is a palindrome
 
+def palindrome(possiblePalindrome):
+	x = 0
+
+	wordToAnalyse = possiblePalindrome.replace(" ", "")
+	reversedWord = wordToAnalyse[::-1]
+
+	for letter in wordToAnalyse:
+		if letter != reversedWord[x]:
+			print("not a palindrome")
+			return False
+		x += 1
+	print("is a palindrome")
+	return True
+#test	 
+palindrome("hannah")
 
 
 
