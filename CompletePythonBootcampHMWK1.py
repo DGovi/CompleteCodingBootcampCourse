@@ -81,7 +81,6 @@ def palindrome(possiblePalindrome):
 	print("is a palindrome")
 	return True
 #test	 
-palindrome("hannah")
-
+#palindrome("hannah")
 
 
