@@ -7,6 +7,17 @@
 # 
 # use iof a number pad to place x and o
 ##############################################################################
+##############################################################################
+#				IMPORTANT
+#
+#
+#				FOR THIS TO RUN PROPERLY, 
+#					PRESS CMD+ALT+B
+#
+#
+#
+#
+##############################################################################
 
 print("Lets play TICTACTOE \n" );
 print("player1 is x");
@@ -14,21 +25,45 @@ print("player2 is o")
 print()
 
 def displayBoard(board):
-	print(board[1] + "|" + board[2] + "|" + board [3] + "				" + "1" + "|" + "2" + "|" + "3")
-	print("-----				-----")
-	print(board[4] + "|" + board[5] + "|" + board [6] + "				" + "4" + "|" + "5" + "|" + "6")
-	print("-----				-----")
-	print(board[7] + "|" + board[8] + "|" + board [9] + "				" + "7" + "|" + "8" + "|" + "9")
+	print(board[1] + "|" + board[2] + "|" + board [3])
+	print("-----")
+	print(board[4] + "|" + board[5] + "|" + board [6] )
+	print("-----")
+	print(board[7] + "|" + board[8] + "|" + board [9] )
 
+def isWinningMove(board):
+	#check the rows
+	if board[1] == board[2] == board[3] or board[4] == board[5] == board[6] or board[7] == board[8] == board[9]:
+		print("youve won!!")
+		return True;
 
-currentBoard = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+	#check the columns
+	elif board[1] == board[4] == board[7] or board[2] == board[5] == board[8] or board[3] == board[6] == board[9]:
+		print("youve won!!")
+		return True
 
+	#check les diagonales
+	elif board[1] == board[5] == board[9] or board[3] == board[5] == board[7]:
+		print("youve won!!")
+		return True
+	else:
+		return False
+
+currentBoard = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
 gameIsFinished = False;
+turn = 0;
+displayBoard(currentBoard)
 
 while gameIsFinished == False:
+	print(turn)
+	if turn % 2 == 0:
+		player1Input = int(input("where would you like to place your x (enter int between 1 and 9) \n"))
+		currentBoard[player1Input] = 'x'
+	else:
+		player2Input = int(input("where would you like to place your o (enter int between 1 and 9) \n"))	
+		currentBoard[player2Input] = 'o'
+	gameIsFinished = isWinningMove(currentBoard) or turn == 8;
+	if turn == 8: 
+		print("game is tied")
+	turn += 1
 	displayBoard(currentBoard)
-	player1Input = int(input("where would you like to place your symbol"))
-
-	currentBoard[player1Input] = 'x'
-	displayBoard(currentBoard)
-	break
