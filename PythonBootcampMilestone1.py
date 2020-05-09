@@ -30,6 +30,7 @@ def displayBoard(board):
 	print(board[4] + "|" + board[5] + "|" + board [6] )
 	print("-----")
 	print(board[7] + "|" + board[8] + "|" + board [9] )
+	print("\n")
 
 def isWinningMove(board):
 	#check the rows
@@ -49,19 +50,36 @@ def isWinningMove(board):
 	else:
 		return False
 
+def isMoveAllowed(position, board):
+	if(board[position] == 'x' or board[position] == 'o'):
+		return False;
+	return True;
+
+def thisTurn():
+	if turn % 2 == 0:
+		print("Player 1 turn!")
+		player1Input = int(input("where would you like to place your x (enter int between 1 and 9) \n"))
+		while isMoveAllowed(player1Input, currentBoard) == False:
+			print();
+			player1Input = int(input("this is invalid. Enter an numbered space"))
+		currentBoard[player1Input] = 'x'
+	else:
+		print("Player 2 turn!")
+		player2Input = int(input("where would you like to place your o (enter int between 1 and 9) \n"))	
+		while isMoveAllowed(player2Input, currentBoard) == False:
+			print();
+			player2Input = int(input("this is invalid. Enter an numbered space"))
+		currentBoard[player2Input] = 'o'
+
+
 currentBoard = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
 gameIsFinished = False;
 turn = 0;
 displayBoard(currentBoard)
 
+# main game loop 
 while gameIsFinished == False:
-	print(turn)
-	if turn % 2 == 0:
-		player1Input = int(input("where would you like to place your x (enter int between 1 and 9) \n"))
-		currentBoard[player1Input] = 'x'
-	else:
-		player2Input = int(input("where would you like to place your o (enter int between 1 and 9) \n"))	
-		currentBoard[player2Input] = 'o'
+	thisTurn();
 	gameIsFinished = isWinningMove(currentBoard) or turn == 8;
 	if turn == 8: 
 		print("game is tied")
