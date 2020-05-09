@@ -51,7 +51,7 @@ def isWinningMove(board):
 		return False
 
 def isMoveAllowed(position, board):
-	if(board[position] == 'x' or board[position] == 'o'):
+	if(board[position] == 'x' or board[position] == 'o') or (position < 1 or position > 9):
 		return False;
 	return True;
 
@@ -72,12 +72,12 @@ def thisTurn():
 		currentBoard[player2Input] = 'o'
 
 
+# game start
 currentBoard = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
 gameIsFinished = False;
 turn = 0;
 displayBoard(currentBoard)
 
-# main game loop 
 while gameIsFinished == False:
 	thisTurn();
 	gameIsFinished = isWinningMove(currentBoard) or turn == 8;
