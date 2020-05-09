@@ -19,6 +19,11 @@
 #
 ##############################################################################
 
+currentBoard = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
+gameIsFinished = False
+turn = 0
+playAgain = False
+
 print("Lets play TICTACTOE \n" );
 print("player1 is x");
 print("player2 is o")
@@ -71,17 +76,35 @@ def thisTurn():
 			player2Input = int(input("this is invalid. Enter an numbered space"))
 		currentBoard[player2Input] = 'o'
 
+def playGame():
+	global gameIsFinished, turn, playAgain
+	while gameIsFinished == False:
+		thisTurn();
+		gameIsFinished = isWinningMove(currentBoard) or turn == 8;
+		if turn == 8: 
+			print("game is tied")
+		turn += 1
+		displayBoard(currentBoard)
+	playAgain = input("play Again? (\'y\' if yes, anything else for no)")
+	if playAgain == 'y':
+		playAgain = True
+	else:
+		playAgain = False
+
+def newGame():
+	global currentBoard, gameIsFinished, turn, playAgain
+	currentBoard = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
+	gameIsFinished = False
+	turn = 0
+	playAgain = False
+	return True;
 
 # game start
-currentBoard = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
-gameIsFinished = False;
-turn = 0;
+newGame()
 displayBoard(currentBoard)
+playGame()
 
-while gameIsFinished == False:
-	thisTurn();
-	gameIsFinished = isWinningMove(currentBoard) or turn == 8;
-	if turn == 8: 
-		print("game is tied")
-	turn += 1
-	displayBoard(currentBoard)
+while playAgain:
+	newGame()
+	playGame()
+print("Exiting TICTACTOE........")
