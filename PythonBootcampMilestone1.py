@@ -55,7 +55,7 @@ def isWinningMove(board):
 
 
 def isMoveAllowed(position, board):
-    if(board[position] == 'x' or board[position] == 'o') or (position < 1 or position > 9):
+    if(position < 1 or position > 9) or (board[position] == 'x' or board[position] == 'o'):
         return False
     return True
 
