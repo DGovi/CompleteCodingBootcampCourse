@@ -5,14 +5,14 @@
 # - you should be able to accept input of the player position and then plaace a symbol 
 #   on the board
 # 
-# use iof a number pad to place x and o
+# use of a number pad to place x and o
 ##############################################################################
 ##############################################################################
 #				IMPORTANT
 #
 #
-#				FOR THIS TO RUN PROPERLY, 
-#					PRESS CMD+ALT+B
+#				on sublime text, make sure repl is installed, 
+#					PRESS CMD+ALT+B on sublimetexte to run it
 #
 #
 #
@@ -26,8 +26,7 @@ playAgain = False
 
 print("Lets play TICTACTOE \n" );
 print("player1 is x");
-print("player2 is o")
-print()
+print("player2 is o \n")
 
 def displayBoard(board):
 	print(board[1] + "|" + board[2] + "|" + board [3])
@@ -39,19 +38,16 @@ def displayBoard(board):
 
 def isWinningMove(board):
 	#check the rows
-	if board[1] == board[2] == board[3] or board[4] == board[5] == board[6] or board[7] == board[8] == board[9]:
+	if (board[1] == board[2] == board[3] or 
+		board[4] == board[5] == board[6] or 
+		board[7] == board[8] == board[9] or 
+		board[1] == board[4] == board[7] or 
+		board[2] == board[5] == board[8] or 
+		board[3] == board[6] == board[9] or 
+		board[1] == board[5] == board[9] or  
+		board[3] == board[5] == board[7]):
 		print("youve won!!")
 		return True;
-
-	#check the columns
-	elif board[1] == board[4] == board[7] or board[2] == board[5] == board[8] or board[3] == board[6] == board[9]:
-		print("youve won!!")
-		return True
-
-	#check les diagonales
-	elif board[1] == board[5] == board[9] or board[3] == board[5] == board[7]:
-		print("youve won!!")
-		return True
 	else:
 		return False
 
