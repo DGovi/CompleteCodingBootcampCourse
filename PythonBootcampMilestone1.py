@@ -55,30 +55,29 @@ def isWinningMove(board):
 
 
 def isMoveAllowed(position, board):
-    if (position < 1 or position > 9) or (board[position] == 'x' or board[position] == 'o'):
+
+    if (position < 1 or position > 9 or board[position] == 'x' or board[position] == 'o'):
         return False
     return True
 
 
 def thisTurn():
-    if turn % 2 == 0:
-        print("Player 1 turn!")
-        player1Input = int(
-            input("where would you like to place your x (enter int between 1 and 9) \n"))
-        while not isMoveAllowed(player1Input, currentBoard):
-            print()
-            player1Input = int(
-                input("this is invalid. Enter an numbered space"))
-        currentBoard[player1Input] = 'x'
-    else:
-        print("Player 2 turn!")
-        player2Input = int(
-            input("where would you like to place your o (enter int between 1 and 9) \n"))
-        while not isMoveAllowed(player2Input, currentBoard):
-            print()
-            player2Input = int(
-                input("this is invalid. Enter an numbered space"))
-        currentBoard[player2Input] = 'o'
+    while True:
+        try:
+            if turn % 2 == 0:
+                print("Player 1 turn!")
+                player1Input = int(
+                    input("where would you like to place your x (enter int between 1 and 9) \n"))
+                currentBoard[player1Input] = 'x'
+            else:
+                print("Player 2 turn!")
+                player2Input = int(
+                    input("where would you like to place your o (enter int between 1 and 9) \n"))
+                currentBoard[player2Input] = 'o'
+            break
+        except:
+            print("try again with a valid number this time")
+            continue
 
 
 def playGame():
