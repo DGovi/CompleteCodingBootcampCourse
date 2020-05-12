@@ -88,10 +88,11 @@ class Account:
         else:
             self.balance = self.balance - amount
             print(f"youve taken out {amount}, you now have {self.balance}")
+            return self.balance
 
 # testing
 
-
+'''
 acct1 = Account("Jose", 100)
 
 print(acct1)
@@ -100,3 +101,4 @@ print(acct1.balance)
 
 acct1.deposit(50)
 acct1.withdraw(50)
+'''
