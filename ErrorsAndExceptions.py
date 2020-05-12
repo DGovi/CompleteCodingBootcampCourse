@@ -28,13 +28,12 @@ def ask():
     while True:
         try:
             integer = int(input("please enter an integer"))
-            return integer
         except:
-            print("you must enter an intger you dumbfuck")
+            print("you must enter an intger ")
             continue
         else:
             print("you entered smthg valid, everything is good here")
-            break
+            return integer ** 2
 
 
-ask()
+print(ask())
