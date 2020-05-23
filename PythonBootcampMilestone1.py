@@ -40,14 +40,14 @@ def displayBoard(board):
 
 def isWinningMove(board):
     # check the rows
-    if (board[1] == board[2] == board[3] or
-        board[4] == board[5] == board[6] or
-        board[7] == board[8] == board[9] or
-        board[1] == board[4] == board[7] or
-        board[2] == board[5] == board[8] or
-        board[3] == board[6] == board[9] or
-        board[1] == board[5] == board[9] or
-            board[3] == board[5] == board[7]):
+    if (board[1] == board[2] == board[3]
+        or board[4] == board[5] == board[6]
+        or board[7] == board[8] == board[9]
+        or board[1] == board[4] == board[7]
+        or board[2] == board[5] == board[8]
+        or board[3] == board[6] == board[9]
+        or board[1] == board[5] == board[9]
+            or board[3] == board[5] == board[7]):
         print("youve won!!")
         return True
     else:
