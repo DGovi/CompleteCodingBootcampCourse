@@ -20,17 +20,31 @@ class Coin():
             print("heads: {}     tails: {}".format(
                 self.num_faces, self.num_tails))
 
+    def ask_play_again(self):
+        answer = input(
+            "would you like top flip the coin again? (y or yes if so) ")
+
+        if answer[0].lower() == 'y':
+            self.num_faces = 0
+            self.num_tails = 0
+            return True
+        else:
+            return False
+
 
 a_coin = Coin()
+flip_again = True
 
-while True:
-    try:
-        times = int(
-            input("how many times would you like to flip a coin: (enter an integer) "))
-        break
-    except:
-        print("integer please")
+while flip_again:
+    while True:
+        try:
+            times = int(
+                input("how many times would you like to flip a coin: (enter an integer) "))
+            break
+        except:
+            print("integer please")
 
-a_coin.flip(times)
+    a_coin.flip(times)
+    flip_again = a_coin.ask_play_again()
 
-print("well i mean thats all there is oto it man")
+print("Thanks for using coin fliip simulator")
