@@ -18,7 +18,7 @@
 currentBoard = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 gameIsFinished = False
 turn = 0
-playAgain = False
+playAgain = True
 
 
 def chose_game_mode():
@@ -33,15 +33,6 @@ def chose_game_mode():
     elif game_mode == 2:
         pass
 ##########################################################
-
-
-def pvp():  # player vs player
-    displayBoard(currentBoard)
-    playGame()
-
-    while playAgain:
-        playGame()
-    print("Exiting TICTACTOE........")
 
 
 '''
@@ -60,25 +51,31 @@ def displayBoard(board):
     print("\n")
 
 
-def playGame():
-    global gameIsFinished, turn, playAgain, currentBoard
-    currentBoard = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    gameIsFinished = False
-    turn = 0
-    playAgain = False
+def pvp():
+    global turn, playAgain, currentBoard
+    displayBoard(currentBoard)
+    while playAgain is True:
 
-    while not gameIsFinished:
-        thisTurn(currentBoard)
-        gameIsFinished = isWinningMove(currentBoard) or turn == 8
-        if turn == 8:
-            print("game is tied")
-        turn += 1
-        displayBoard(currentBoard)
-    playAgain = input("play Again? (\'y\' if yes, anything else for no)")
-    if playAgain == 'y':
-        playAgain = True
-    else:
+        # new game
+        currentBoard = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        gameIsFinished = False
+        turn = 0
         playAgain = False
+
+        # game loop
+        while not gameIsFinished:
+            thisTurn(currentBoard)
+            gameIsFinished = isWinningMove(currentBoard) or turn == 8
+            if turn == 8:
+                print("game is tied")
+            turn += 1
+            displayBoard(currentBoard)
+        playAgain = input("play Again? (\'y\' if yes, anything else for no)")
+        if playAgain == 'y':
+            playAgain = True
+        else:
+            playAgain = False
+    print("Exiting TICTACTOE........")
 
 
 def thisTurn(board):
@@ -126,4 +123,4 @@ def isWinningMove(board):
         return False
 
 
-pvp()
+chose_game_mode()
