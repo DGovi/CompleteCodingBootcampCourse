@@ -31,7 +31,6 @@ def newGame():
     gameIsFinished = False
     turn = 0
     playAgain = False
-    return True
 
 
 def displayBoard(board):
@@ -76,9 +75,9 @@ def thisTurn(board):
                 print("Player 2 turn!")
                 player2Input = int(
                     input("where would you like to place your o (enter int between 1 and 9) \n"))
-                if (player1Input < 1 or player1Input > 9):
+                if (player2Input < 1 or player2Input > 9):
                     raise Exception
-                elif (board[player1Input] == 'x' or board[player1Input] == 'o'):
+                elif (board[player2Input] == 'x' or board[player2Input] == 'o'):
                     raise Exception
                 else:
                     currentBoard[player2Input] = 'o'
