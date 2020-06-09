@@ -15,7 +15,7 @@
 #
 #
 ##############################################################################
-currentBoard = ["0", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+currentBoard = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 gameIsFinished = False
 turn = 0
 playAgain = False
@@ -52,17 +52,17 @@ def pvc():
 
 
 def displayBoard(board):
-    print("1|2|3    " + board[1] + "|" + board[2] + "|" + board[3])
-    print("-----    -----")
-    print("4|5|6    " + board[4] + "|" + board[5] + "|" + board[6])
-    print("-----    -----")
-    print("7|8|9    " + board[7] + "|" + board[8] + "|" + board[9])
+    print(board[1] + "|" + board[2] + "|" + board[3])
+    print("-----")
+    print(board[4] + "|" + board[5] + "|" + board[6])
+    print("-----")
+    print(board[7] + "|" + board[8] + "|" + board[9])
     print("\n")
 
 
 def playGame():
     global gameIsFinished, turn, playAgain, currentBoard
-    currentBoard = ["0", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+    currentBoard = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     gameIsFinished = False
     turn = 0
     playAgain = False
@@ -90,6 +90,7 @@ def thisTurn(board):
         print("Player 2 turn!")
         player_input = ensure_valid_position(board)
         currentBoard[player_input] = 'o'
+    player_input = None
 
 
 def ensure_valid_position(board):
@@ -118,9 +119,7 @@ def isWinningMove(board):
         or board[3] == board[6] == board[9]
         or board[1] == board[5] == board[9]
             or board[3] == board[5] == board[7]):
-        # check if positinos are board spaces
-        if(board[1] == " " or board[2] == " " or board[3] == " " or board[4] == " " or board[7] == " " or board[9] == " "):
-            return False
+
         print("winner!!")
         return True
     else:
