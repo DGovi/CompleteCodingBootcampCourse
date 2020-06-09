@@ -7,10 +7,8 @@
 # use of a number pad to place x and o
 ##############################################################################
 ##############################################################################
-# IMPORTANT
 #
-#
-# on sublime text, make sure repl is installed,
+# To run on sublime text, make sure REPL is installed,
 # PRESS CMD+ALT+B on sublimetext to run it
 #
 #
