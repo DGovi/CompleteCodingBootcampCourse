@@ -15,52 +15,58 @@
 #
 #
 ##############################################################################
+import random
+
 currentBoard = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 gameIsFinished = False
 turn = 0
 playAgain = True
+game_mode = None
 
 
 def chose_game_mode():
     print("Lets play TICTACTOE \n")
-    game_mode = int(input(
-        "which game mode are you playing? \n 1-Player vs Player? \n 2-Player vs Computer?\n (enter 1 or 2)"))
-    if game_mode == 1:
-        print("PVP CHOSEN")
-        print("player 1 is x")
-        print("player 2 is o \n")
-        pvp()
-    elif game_mode == 2:
-        pass
-##########################################################
-
-
-'''
-def pvc():
-    print("VS COMPUTER CHOSEN")
-    print("you go first")
-'''
+    global game_mode
+    while True:
+        try:
+            game_mode = int(input(
+                "which game mode are you playing? \n 1-Player vs Player? \n 2-Player vs Computer?\n (enter 1 or 2)"))
+            if game_mode == 1:
+                print("PVP CHOSEN")
+                print("player 1 is x")
+                print("player 2 is o \n")
+                playGame()
+            elif game_mode == 2:
+                print("PVC CHOSEN")
+                print("you are x")
+                playGame()
+            else:
+                raise Exception
+            break
+        except:
+            print("enter 1 or 2")
+            continue
 
 
 def displayBoard(board):
-    print(board[1] + "|" + board[2] + "|" + board[3])
-    print("-----")
-    print(board[4] + "|" + board[5] + "|" + board[6])
-    print("-----")
-    print(board[7] + "|" + board[8] + "|" + board[9])
+    print("   " + board[1] + "   |   " + board[2] + "   |   " + board[3])
+    print("-----------------------")
+    print("   " + board[4] + "   |   " + board[5] + "   |   " + board[6])
+    print("-----------------------")
+    print("   " + board[7] + "   |   " + board[8] + "   |   " + board[9])
     print("\n")
 
 
-def pvp():
-    global turn, playAgain, currentBoard
+def playGame():
+    global turn, currentBoard, playAgain
     displayBoard(currentBoard)
-    while playAgain is True:
+    while playAgain:
 
         # new game
         currentBoard = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         gameIsFinished = False
         turn = 0
-        playAgain = False
+        playAgain = True
 
         # game loop
         while not gameIsFinished:
@@ -70,6 +76,7 @@ def pvp():
                 print("game is tied")
             turn += 1
             displayBoard(currentBoard)
+
         playAgain = input("play Again? (\'y\' if yes, anything else for no)")
         if playAgain == 'y':
             playAgain = True
@@ -82,12 +89,25 @@ def thisTurn(board):
     if turn % 2 == 0:
         print("Player 1 turn!")
         player_input = ensure_valid_position(board)
-        currentBoard[player_input] = 'x'
+        board[player_input] = 'x'
     else:
-        print("Player 2 turn!")
-        player_input = ensure_valid_position(board)
-        currentBoard[player_input] = 'o'
-    player_input = None
+        if game_mode == 1:
+            print("Player 2 turn!")
+            player_input = ensure_valid_position(board)
+            board[player_input] = 'o'
+        else:
+            print("computer turn")
+            computer_turn(board)
+
+
+def computer_turn(board):
+
+    available_positions = []
+    for position in board:
+        if position != "x" and position != "o" and position != "0":
+            available_positions.append(position)
+    rand_num = random.randint(0, len(available_positions))
+    board[int(available_positions[rand_num])] = "o"
 
 
 def ensure_valid_position(board):
@@ -102,7 +122,7 @@ def ensure_valid_position(board):
             else:
                 return playerInput
         except:
-            print("Enter a vaild number")
+            print("Enter a VALID number")
             continue
 
 
